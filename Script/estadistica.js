@@ -1,4 +1,4 @@
-// let array=[40,10,20,30];
+const FuncionesMatematicas={};
 
 /// con metodo de For
 // function calcularPromedio(arr){
@@ -14,7 +14,7 @@
 //////////////////////////////////////////
 ////con metodo .reduce()
 // let arr2=[1,2,3,4,5,6,7,8,9,10];
-function calcularPromedioReduce(arr){
+FuncionesMatematicas.calcularPromedioReduce = function calcularPromedioReduce(arr){
 
     function sumaTodosElementos (valorAcumulado,valorFinal){ 
         return valorAcumulado+ valorFinal;
@@ -33,13 +33,13 @@ function calcularPromedioReduce(arr){
 }
 // calcularPromedioReduce(arr2);
 
-function isPair(arr){
+FuncionesMatematicas.isPair = function isPair(arr){
     return !(arr.length % 2);
 }
-function isOdd(arr){
+FuncionesMatematicas.isOdd = function isOdd(arr){
     return (arr.length % 2);
 }
-function ordenarArray(arrDesordenado){
+FuncionesMatematicas.ordenarArray = function ordenarArray(arrDesordenado){
 
     function ordenarArraySort(valorAcumulado,nuevoValor){
         return valorAcumulado -nuevoValor;
@@ -63,9 +63,9 @@ function ordenarArray(arrDesordenado){
     // console.log(arr)
     // return true;
 }
-function calcularMediana(arrDesordenado){
-    const arr= ordenarArray(arrDesordenado)
-    const arrayIsPair=isPair(arr);
+FuncionesMatematicas.calcularMediana = function calcularMediana(arrDesordenado){
+    const arr= FuncionesMatematicas.ordenarArray(arrDesordenado)
+    const arrayIsPair=FuncionesMatematicas.isPair(arr);
     
     if(arrayIsPair){ //si es par ejecuta lo sig
         // encontramos la posicion de la mitad
@@ -73,7 +73,7 @@ function calcularMediana(arrDesordenado){
         //le restamos uno ya que comienza a contar desde el 0 en adelante
         let position2= (position1)-1;
         let arrayMitades=[arr[position1],arr[position2]];
-        calcularPromedioReduce(arrayMitades);
+        FuncionesMatematicas.calcularPromedioReduce(arrayMitades);
         return 
     
     }else{
@@ -92,7 +92,7 @@ function calcularMediana(arrDesordenado){
 
 //[ [0,1] , [0,1] , [0,1] , [0,1] ] 
 // recibira el arreglo y el numero de la posicion que quera comparar 
-function ordenarArrayBidimencional(arrDesordenadoBidemensional,i){
+FuncionesMatematicas.ordenarArrayBidimencional = function ordenarArrayBidimencional(arrDesordenadoBidemensional,i){
 
     function ordenarArraySort(valorAcumulado,nuevoValor){
 
@@ -126,7 +126,7 @@ function calcularModa(arr){
     // cambiamos el objeto {} a array []
     const arrayList =Object.entries(arrayCount);
     //guardamos el array ordenado en la variable
-    const arrayOrdenadoBidimensional= ordenarArrayBidimencional(arrayList,1);
+    const arrayOrdenadoBidimensional= FuncionesMatematicas.ordenarArrayBidimencional(arrayList,1);
     const arrayOrdenadoMaxNumber=arrayOrdenadoBidimensional[arrayOrdenadoBidimensional.length-1];
     // console.log(arrayCount);
     // console.log('');
@@ -143,9 +143,9 @@ function calcularModa(arr){
     return moda
 
 }
-calcularModa(array); 
+// calcularModa(array); 
 
-calcularMediana(array);
+// calcularMediana(array);
 
 
 ////DESAFIO ////////////
