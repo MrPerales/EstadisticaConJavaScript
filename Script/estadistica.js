@@ -80,8 +80,8 @@ FuncionesMatematicas.calcularMediana = function calcularMediana(arrDesordenado){
         //para saber la posicion y  asi poder mostrar el valor que esta en esa posicion de el array
         const indexMitadListaImpar= Math.floor(arr.length/2);  
         const medianaListaImpar= arr[indexMitadListaImpar];
-        console.log(indexMitadListaImpar);
-        console.log(medianaListaImpar);
+        // console.log(indexMitadListaImpar);
+        // console.log(medianaListaImpar);
     
         return medianaListaImpar;
     
