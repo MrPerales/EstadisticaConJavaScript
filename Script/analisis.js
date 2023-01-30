@@ -23,8 +23,8 @@ function proyeccionPorPersona(personName){
     //variable para major legibilidad la cual esta apuntando al key Trabajos del array de obj salario
     const trabajos = busquedaPorNombre(personName).trabajos;
     // console.log(trabajos)
-    
     let porcentajesCrecimiento=[];
+
     for(let i=1; i < trabajos.length ; i++){
         //para saber el porcentaje del crecimiento restamos el salario actual -salario anterior
         const salarioActual=trabajos[i].salario;
@@ -35,6 +35,7 @@ function proyeccionPorPersona(personName){
         //lo agregamos al array 
         porcentajesCrecimiento.push(porcentajeCrecimiento);
     }
+
     //sacamos la mediana de ese array que creamos con la funcion matematica 
     const medianaPorcentajesCrecimiento=FuncionesMatematicas.calcularMediana(porcentajesCrecimiento);
     //una vez que tenemos la mediana tenemos que multiplicar el resultado con el ultimo salario 
@@ -43,4 +44,58 @@ function proyeccionPorPersona(personName){
     const aumento = ultimoSalario*medianaPorcentajesCrecimiento;
     const nuevoSalario= ultimoSalario+aumento;
     return nuevoSalario; 
+}
+
+//Analisis empresarial 
+/*{
+    Insdustrias uno:{
+        2018:[salarios,salarios,salarios];
+        2019:....
+        2020:....
+        2021:....
+    },
+    {
+    Industrias 2:{},
+    industrias 3:{},
+    }
+}*/  
+//creamos arreglo donde guardar todo 
+const empresas={};
+// persona es el ebjeto del array name:--,trabajos:--
+for(persona of salarios ){
+    //trabajo es el objeto dentro del objeto trabajos :{ year: 2018, empresa: 'Freelance', salario: 250, }
+    for(trabajo of persona.trabajos ){
+        //validamos si existe un objeto dentreo de empresas con el nombre de la empresa si no lo creamos  
+        if(!empresas[trabajo.empresa]){
+            empresas[trabajo.empresa]={};
+            /*ya tenemos la estructura 
+            Industrias 1:{},
+            Industrias 2:{},*/
+        }
+        //ahora hacemos lo mismo pero ahora dentro del objeto empresas y asi poder meter los años y el sueldo 
+        if(!empresas[trabajo.empresa][trabajo.year]){
+            empresas[trabajo.empresa][trabajo.year]=[];
+            /*Insdustrias uno:{
+            2018:[];
+            2019:[];
+            */
+           //solo falta insertar los salarios 
+        }else{
+            empresas[trabajo.empresa][trabajo.year].push(trabajo.salario);
+        }
+    }
+}
+console.log(empresas);
+
+function medianaEmpresaYear(nombreEmpresa,year){
+    if (!empresas[nombreEmpresa]){
+        console.warn('La emprea no existe');
+        return;
+        // buscamos si tiene un apartado de years si no mandamos un console.warn
+    }else if(!empresas[nombreEmpresa][year]){
+        console.warn('La empresa no tiene registros de ese year');
+        return;
+    }else{
+        return FuncionesMatematicas.calcularMediana(empresas[nombreEmpresa][year]);
+    }
 }
