@@ -21,7 +21,7 @@ FuncionesMatematicas.calcularPromedioReduce = function calcularPromedioReduce(ar
     }
     
     let promedio =arr.reduce(sumaTodosElementos)/arr.length;
-    console.log(promedio);
+    //console.log(promedio);
     
     // otra forma de escribir el codigo 
     // let sumaTotal=arr.reduce((valorAcumulado,valorFinal)=>{
